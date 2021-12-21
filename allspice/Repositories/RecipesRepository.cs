@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -36,6 +37,25 @@ namespace allspice.Repositories
       int id = _db.ExecuteScalar<int>(sql, newrecipe);
       newrecipe.Id = id;
       return newrecipe;
+    }
+
+    internal Recipe Edit(Recipe updatedRecipe)
+    {
+      string sql = @"
+      UPDATE recipes
+      SET
+      title = @Title,
+      subtitle = @SubTitle,
+      category = @Category,
+      creatorId = @CreatorId
+      WHERE id = @Id
+      ;";
+      int rows = _db.Execute(sql, updatedRecipe);
+      if (rows <= 0)
+      {
+        throw new Exception("Recipe was not updated Repository");
+      }
+      return updatedRecipe;
     }
   }
 }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using allspice.Models;
 using allspice.Services;
 using CodeWorks.Auth0Provider;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace allspice.Controllers
@@ -48,6 +49,7 @@ namespace allspice.Controllers
       }
     }
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Recipe>> Create([FromBody] Recipe newrecipe)
     {
       try
@@ -55,6 +57,22 @@ namespace allspice.Controllers
               Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
            newrecipe.CreatorId = userInfo?.Id;
            Recipe recipe =_rs.Create(newrecipe);
+           return Ok(recipe);
+      }
+      catch (Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult<Recipe> Edit([FromBody] Recipe updaterecipe, int id)
+    {
+      try
+      {
+           updaterecipe.Id = id;
+           Recipe recipe = _rs.Edit(updaterecipe);
            return Ok(recipe);
       }
       catch (Exception e)
