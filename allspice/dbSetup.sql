@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS ingredients(
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
   ingredientname TEXT NOT NULL COMMENT 'ingredient name',
-  quantity int NOT NULL COMMENT 'ingredient quantity',
+  quantity TEXT NOT NULL COMMENT 'ingredient quantity',
   recipeId int NOT NULL,
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
