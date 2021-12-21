@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using allspice.Models;
 using allspice.Repositories;
@@ -15,5 +16,19 @@ namespace allspice.Services
         {
           return _repo.Get();
         }
+
+    internal Recipe Get(int id)
+    {
+      Recipe found = _repo.Get(id);
+      if(found == null){
+        throw new Exception("Invalid Id");
+      }
+      return found;
+    }
+
+    internal Recipe Create(Recipe newrecipe)
+    {
+      return _repo.Create(newrecipe);
+    }
   }
 }

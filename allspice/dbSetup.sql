@@ -42,3 +42,5 @@ CREATE TABLE IF NOT EXISTS favorites(
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
   FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
+
+

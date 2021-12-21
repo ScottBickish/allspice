@@ -18,5 +18,24 @@ namespace allspice.Repositories
       string sql = "SELECT * FROM  recipes;";
       return _db.Query<Recipe>(sql).ToList();
     }
+    internal Recipe Get(int id)
+    {
+      string sql = @"SELECT * FROM recipes
+      WHERE id = @id
+      ;";
+      return _db.QueryFirstOrDefault<Recipe>(sql, new{id});
+    }
+
+    internal Recipe Create(Recipe newrecipe)
+    {
+       string sql = @"INSERT INTO recipes 
+      (title, subtitle, category, creatorId)
+      VALUE(@title, @subtitle, @category, @creatorId)
+      ;SELECT LAST_INSERT_ID();";
+
+      int id = _db.ExecuteScalar<int>(sql, newrecipe);
+      newrecipe.Id = id;
+      return newrecipe;
+    }
   }
 }
