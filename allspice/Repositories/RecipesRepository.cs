@@ -57,5 +57,18 @@ namespace allspice.Repositories
       }
       return updatedRecipe;
     }
+
+    internal void Remove(int id)
+      {
+      string sql = @"
+      DELETE FROM recipes
+      WHERE id = @Id
+      ;";
+      int rows = _db.Execute(sql, new { id });
+      if (rows <= 0)
+      {
+        throw new Exception("invalid Id");
+      }
+    }
   }
 }

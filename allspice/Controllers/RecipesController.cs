@@ -82,5 +82,20 @@ namespace allspice.Controllers
       }
     }
 
+    [HttpDelete("{id}")]
+    public ActionResult<string> Remove(int id)
+    {
+      try
+      {
+           _rs.Remove(id);
+           return Ok("you have removed this recipe");
+      }
+      catch (Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+    }
+
   }
 }
