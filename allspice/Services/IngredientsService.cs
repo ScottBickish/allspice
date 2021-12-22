@@ -40,5 +40,11 @@ namespace allspice.Services
       updatedIngredient.CreatorId = updatedIngredient.CreatorId != null ? updatedIngredient.CreatorId : oldIngredient.CreatorId;
       return _repo.Edit(updatedIngredient);
     }
+
+    internal void Remove(int id)
+    {
+      Ingredient ingredient = GetById(id);
+      _repo.Remove(id);
+    }
   }
 }
