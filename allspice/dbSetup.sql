@@ -28,21 +28,26 @@ CREATE TABLE IF NOT EXISTS ingredients(
   ingredientname TEXT NOT NULL COMMENT 'ingredient name',
   quantity TEXT NOT NULL COMMENT 'ingredient quantity',
   recipeId int NOT NULL,
-  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE IF NOT EXISTS steps(
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  id INT NOT NULL primary key AUTO_INCREMENT COMMENT 'primary key',
   recipesteporder int NOT NULL COMMENT 'order for the steps',
   body TEXT NOT NULL COMMENT 'body for the step',
   recipeId int NOT NULL,
-  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
+  creatorId VARCHAR(255) NOT NULL,
+  FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
+  FOREIGN KEY (creatorId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
 CREATE TABLE IF NOT EXISTS favorites(
   accountId VARCHAR(255) NOT NULL,
   recipeId int NOT NULL,
+  id INT NOT NULL primary key AUTO_INCREMENT COMMENT 'primary key',
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
   FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
