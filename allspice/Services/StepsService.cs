@@ -26,5 +26,29 @@ namespace allspice.Services
     {
       return _repo.Create(newstep);
     }
+    internal Step GetById(int id)
+    {
+      Step found = _repo.GetById(id);
+      if(found == null){
+        throw new Exception("Invalid Id");
+      }
+      return found; 
+    }
+
+    internal Step Edit(Step updatedStep)
+    {
+       Step oldStep = GetById(updatedStep.Id);
+      updatedStep.RecipeStepOrder = updatedStep.RecipeStepOrder != null ? updatedStep.RecipeStepOrder : oldStep.RecipeStepOrder;
+      updatedStep.Body = updatedStep.Body != null ? updatedStep.Body : oldStep.Body;
+      updatedStep.RecipeId = updatedStep.RecipeId != null ? updatedStep.RecipeId : oldStep.RecipeId;
+      updatedStep.CreatorId = updatedStep.CreatorId != null ? updatedStep.CreatorId : oldStep.CreatorId;
+      return _repo.Edit(updatedStep);
+    }
+
+    internal void Remove(int id)
+    {
+      Step step = GetById(id);
+      _repo.Remove(id);
+    }
   }
 }

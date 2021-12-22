@@ -51,5 +51,37 @@ namespace allspice.Controllers
           return BadRequest(e.Message);
       }
     }
+     [HttpPut("{id}")]
+    public ActionResult<Step> Edit([FromBody] Step updatedstep, int id)
+    {
+      try
+      {
+           updatedstep.Id = id;
+           Step step = _ss.Edit(updatedstep);
+           return Ok(step);
+      }
+      catch (Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+  }
+
+  [HttpDelete("{id}")]
+  public ActionResult<string> Remove(int id)
+  {
+    try
+    {
+         _ss.Remove(id);
+         return Ok("you have deleted this step hope you wrote it down");
+    }
+    catch (Exception e)
+    {
+        
+        return BadRequest(e.Message);
+    }
+  }
+  
   }
 }
+  

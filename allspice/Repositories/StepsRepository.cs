@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using allspice.Models;
@@ -31,6 +32,46 @@ namespace allspice.Repositories
       int id = _db.ExecuteScalar<int>(sql, newstep);
       newstep.Id = id;
       return newstep;
+    }
+
+    internal Step GetById(int id)
+    {
+      string sql = @"SELECT * FROM steps
+      WHERE id = @id
+      ;";
+      return _db.QueryFirstOrDefault<Step>(sql, new{id});
+    }
+
+    internal Step Edit(Step updatedStep)
+    {
+       string sql = @"
+      UPDATE steps
+      SET
+      recipesteporder = @RecipeStepOrder,
+      body = @Body,
+      recipeId = @RecipeId,
+      creatorId = @CreatorId
+      WHERE id = @Id
+      ;";
+      int rows = _db.Execute(sql, updatedStep);
+      if (rows <= 0)
+      {
+        throw new Exception("Step was not updated Repository");
+      }
+      return updatedStep;
+    }
+
+    internal void Remove(int id)
+    {
+      string sql = @"
+      DELETE FROM steps
+      WHERE id = @Id
+      ;";
+      int rows = _db.Execute(sql, new { id });
+      if (rows <= 0)
+      {
+        throw new Exception("invalid Id");
+      }
     }
   }
 }
