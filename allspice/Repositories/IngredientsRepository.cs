@@ -71,5 +71,14 @@ namespace allspice.Repositories
         throw new Exception("invalid Id");
       }
     }
+
+    internal  IEnumerable<Ingredient> GetIngredientByRecipeId(int recipeId)
+    {
+        string sql = @"SELECT * FROM ingredients
+      WHERE recipeId = @recipeId
+      ;";
+      
+      return _db.Query<Ingredient>(sql, new {recipeId});
+    }
   }
 }

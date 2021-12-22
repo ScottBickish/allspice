@@ -46,5 +46,15 @@ namespace allspice.Services
       Ingredient ingredient = GetById(id);
       _repo.Remove(id);
     }
+
+    internal IEnumerable<Ingredient> GetIngredientByRecipeId(int recipeId)
+    {
+      // return _repo.GetIngredientByRecipeId(recipeId);
+      IEnumerable<Ingredient> found = _repo.GetIngredientByRecipeId(recipeId);
+      if(found == null){
+        throw new Exception("Invalid recipeId");
+      }
+      return found; 
+    }
   }
 }

@@ -34,21 +34,7 @@ namespace allspice.Controllers
           return BadRequest(e.Message);
       }
     }
-    [HttpGet("{id}")]
-    public ActionResult<Ingredient> GetById(int id)
-    {
-      try
-      {
-           var Ingredients = _ins.GetById(id);
-           return Ok(Ingredients);
-      }
-      catch (Exception e)
-      {
-          
-          return BadRequest(e.Message);
-      }
-    }
-
+   
     [HttpPost]
     [Authorize]
      public async Task<ActionResult<Ingredient>> Create([FromBody] Ingredient newingredient)
@@ -89,6 +75,20 @@ namespace allspice.Controllers
       {
             _ins.Remove(id);
            return Ok("you have removed this ingredient");
+      }
+      catch (Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+    }
+       [HttpGet("{recipeId}")]
+    public ActionResult<IEnumerable<Ingredient>> GetIngredientByRecipeId(int recipeId)
+    {
+      try
+      {
+           var Ingredients = _ins.GetIngredientByRecipeId(recipeId);
+           return Ok(Ingredients);
       }
       catch (Exception e)
       {
