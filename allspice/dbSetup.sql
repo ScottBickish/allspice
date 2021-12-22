@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS recipes(
 CREATE TABLE IF NOT EXISTS ingredients(
   createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
+  id INT NOT NULL primary key AUTO_INCREMENT COMMENT 'primary key',
+  creatorId VARCHAR(255) NOT NULL,
   ingredientname TEXT NOT NULL COMMENT 'ingredient name',
   quantity TEXT NOT NULL COMMENT 'ingredient quantity',
   recipeId int NOT NULL,
