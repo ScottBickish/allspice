@@ -52,4 +52,57 @@ CREATE TABLE IF NOT EXISTS favorites(
   FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
+SELECT 
+r.*,
+i.*
+FROM recipes r
+JOIN ingredients i ON i.recipeId = r.id
+WHERE r.id = 9;
 
+
+
+/* Get all elves at a station */
+/* From on a many to many FROM will always be the many to many table */
+/* WHERE is the many to many table and which side of the relationship data you have */
+/* JOIN starts with the data you actually want */
+-- SELECT NOTE
+--   a.*,
+--   acctStations.id AS accountStationId
+-- FROM accountstations acctStations
+-- JOIN accounts a ON acctStations.accountId = a.id
+-- WHERE acctStations.stationId = 10;
+
+
+
+
+/* get all stations by account id */
+-- SELECT NOTE
+--   s.*,
+--   acctStations.id AS accountStationId
+-- FROM accountstations acctStations
+-- JOIN stations s ON s.id = acctStations.stationId
+-- WHERE acctStations.accountId = "61bb7496776066b1d032f988"
+
+/* future populating data retrieved from the many-to-many */
+-- SELECT NOTE
+--   s.*,
+--   acctStations.id AS accountStationId,
+--   a.*
+-- FROM accountstations acctStations
+-- JOIN stations s ON s.id = acctStations.stationId
+-- JOIN account a ON a.id = s.creatorId
+-- WHERE acctStations.accountId = "61bb7496776066b1d032f988"
+
+/* ANCHOR 
+NOTE
+FIXME
+STUB
+SECTION
+TODO
+REVIEW
+  query
+  _db.Query<AccountStationViewModel, Account, AccountStationViewModel>(sql, (vm, acct)=>{
+    vm.creator = acct;
+    return vm;
+  }, new {accountId}, splitOn: 'id')
+ */
