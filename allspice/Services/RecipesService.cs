@@ -35,6 +35,7 @@ namespace allspice.Services
     {
       Recipe oldRecipe = Get(updatedRecipe.Id);
       updatedRecipe.Title = updatedRecipe.Title != null ? updatedRecipe.Title : oldRecipe.Title;
+      updatedRecipe.ImgUrl = updatedRecipe.ImgUrl != null ? updatedRecipe.ImgUrl : oldRecipe.ImgUrl;
       updatedRecipe.SubTitle = updatedRecipe.SubTitle != null ? updatedRecipe.SubTitle : oldRecipe.SubTitle;
       updatedRecipe.Category = updatedRecipe.Category != null ? updatedRecipe.Category : oldRecipe.Category;
       updatedRecipe.CreatorId = updatedRecipe.CreatorId != null ? updatedRecipe.CreatorId : oldRecipe.CreatorId;
