@@ -1,5 +1,6 @@
 <template>
   <div
+    @click="setActiveStuff(recipe.id)"
     class="card selectable"
     data-bs-toggle="modal"
     data-bs-target="#recipe-modal"
@@ -11,7 +12,7 @@
     <div class="justify-content-center d-flex">
       <img
         :src="recipe.imgUrl"
-        class="card-img-top pic mt-2"
+        class="card-img-top pic mt-2 img-fluid"
         alt="recipe picture didnt load sorry"
       />
     </div>
@@ -25,8 +26,13 @@
 
 
 <script>
+import { computed } from "@vue/reactivity"
+import { ingredientsService } from "../services/IngredientsService"
+import { stepsService } from "../services/StepsService"
 import { recipesService } from "../services/RecipesService"
 import { logger } from "../utils/Logger"
+import { AppState } from "../AppState"
+import Pop from "../utils/Pop"
 export default {
   props: {
     recipe: Object
@@ -39,7 +45,20 @@ export default {
         } catch (error) {
           logger.log(error)
         }
+      },
+      async setActiveStuff(recipeId) {
+        try {
+          await recipesService.getRecipeById(recipeId)
+          await ingredientsService.getIngredientByRecipeId(recipeId)
+          await stepsService.getStepByRecipeId(recipeId)
+
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error)
+
+        }
       }
+
     }
   }
 }
