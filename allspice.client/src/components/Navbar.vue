@@ -1,5 +1,18 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary px-3">
+    <button
+      class="btn btn-rounded bg-dark"
+      data-bs-toggle="modal"
+      data-bs-target="#RecipeForm"
+      title="form"
+    >
+      New Recipe
+    </button>
+    <Modal id="RecipeForm">
+      <template #modal-title> Make a New Delecious Recipe! </template>
+
+      <template #modal-body> <RecipeForm /> </template>
+    </Modal>
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <!-- <div class="d-flex flex-column align-items-center">
         <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
@@ -26,7 +39,10 @@
           </router-link>
         </li>
       </ul>
-      <span class="navbar-text">
+
+      <h2 class="me-5">AllSpice</h2>
+
+      <span class="navbar-text ms-5">
         <button
           class="
             btn

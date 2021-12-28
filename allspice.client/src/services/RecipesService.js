@@ -13,6 +13,16 @@ class RecipesService{
     const res = await api.get(`api/Recipes/${id}`)
     AppState.activeRecipe = res.data
   }
+  async createRecipe(recipe){
+    const res = await api.post('api/Recipes', recipe)
+    logger.log(res.data, 'Posted recipe from modal')
+    AppState.recipes = AppState.recipes.push(res.data)
+  }
+  
+  async removeRecipe(id){
+    await api.delete(`api/Recipes/${id}`)
+    this.getAllRecipes()
+  }
 
 }
 export const recipesService = new RecipesService()

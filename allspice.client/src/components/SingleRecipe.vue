@@ -1,11 +1,17 @@
 <template>
   <div
-    @click="setActiveStuff(recipe.id)"
-    class="card selectable"
+    class="bg-secondary rounded-top mdi mdi-close text-end selectable"
+    @click="removeRecipe(recipe.id)"
+  ></div>
+  <div
+    class="bg-secondary rounded-bottom"
     data-bs-toggle="modal"
     data-bs-target="#recipe-modal"
   >
-    <div class="justify-content-center d-flex">
+    <div
+      class="justify-content-center d-flex selectable"
+      @click="setActiveStuff(recipe.id)"
+    >
       <img
         :src="recipe.imgUrl"
         class="card-img-top pic mt-2 img-fluid"
@@ -37,15 +43,10 @@ export default {
   props: {
     recipe: Object
   },
-  setup() {
+  setup(props) {
     return {
-      // async getRecipe(id) {
-      //   try {
-      //     await recipesService.getRecipe(id)
-      //   } catch (error) {
-      //     logger.log(error)
-      //   }
-      // },
+      props,
+
       async setActiveStuff(recipeId) {
         try {
           await recipesService.getRecipeById(recipeId)
@@ -56,6 +57,17 @@ export default {
           logger.error(error)
           Pop.toast(error)
 
+        }
+      },
+      async removeRecipe() {
+        try {
+          // id = AppState.recipes.find(r => r.id === id)
+          if (await Pop.confirm('Are you sure you want to delete this recipe?')) {
+            await recipesService.removeRecipe(props.recipe.id)
+          }
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error)
         }
       }
 
