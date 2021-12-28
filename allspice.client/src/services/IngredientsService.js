@@ -1,10 +1,11 @@
+import { AppState } from "../AppState"
 import { logger } from "../utils/Logger"
 import { api } from "./AxiosService"
 
 class IngredientsService{
   async getIngredientByRecipeId(id){
     const res = await api.get(`api/Ingredients/${id}`)
-    logger.log(res.data, "ingredient service")
+    AppState.activeIngredients = res.data
   }
 
 }

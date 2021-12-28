@@ -11,7 +11,7 @@ class RecipesService{
   // NOTE set active
   async getRecipeById(id){
     const res = await api.get(`api/Recipes/${id}`)
-    logger.log(res.data, 'recipe service')
+    AppState.activeRecipe = res.data
   }
 
 }

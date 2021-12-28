@@ -6,6 +6,6 @@ export const AppState = reactive({
   account: {},
   recipes: [],
   activeRecipe: {},
-  activeIngredient: {},
-  activeStep: {}
+  activeIngredients: [],
+  activeSteps: []
 })

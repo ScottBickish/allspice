@@ -35,4 +35,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
+// Modal.getOrCreateInstance(document.getElementById('editGameNight-' + gameNightId)).hide()
 </style>

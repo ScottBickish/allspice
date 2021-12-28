@@ -5,10 +5,6 @@
     data-bs-toggle="modal"
     data-bs-target="#recipe-modal"
   >
-    <Modal id="recipe-modal">
-      <template #modal-title>Recipe</template>
-      <template #modal-body> </template>
-    </Modal>
     <div class="justify-content-center d-flex">
       <img
         :src="recipe.imgUrl"
@@ -22,6 +18,10 @@
       {{ recipe.category }}
     </div>
   </div>
+  <Modal id="recipe-modal">
+    <template #modal-title>Recipe Info</template>
+    <template #modal-body> <ActiveRecipeModal /> </template>
+  </Modal>
 </template>
 
 
@@ -39,13 +39,13 @@ export default {
   },
   setup() {
     return {
-      async getRecipe(id) {
-        try {
-          await recipesService.getRecipe(id)
-        } catch (error) {
-          logger.log(error)
-        }
-      },
+      // async getRecipe(id) {
+      //   try {
+      //     await recipesService.getRecipe(id)
+      //   } catch (error) {
+      //     logger.log(error)
+      //   }
+      // },
       async setActiveStuff(recipeId) {
         try {
           await recipesService.getRecipeById(recipeId)
