@@ -1,12 +1,12 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-secondary px-3">
     <button
-      class="btn btn-rounded bg-dark"
+      class="btn btn-rounded color"
       data-bs-toggle="modal"
       data-bs-target="#RecipeForm"
       title="form"
     >
-      New Recipe
+      <em> New Recipe </em>
     </button>
     <Modal id="RecipeForm">
       <template #modal-title> Make a New Delecious Recipe! </template>
@@ -39,8 +39,9 @@
           </router-link>
         </li>
       </ul>
-
-      <h2 class="me-5">AllSpice</h2>
+      <em>
+        <h2 class="me-5">AllSpice</h2>
+      </em>
 
       <span class="navbar-text ms-5">
         <button
@@ -71,7 +72,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3 text-success lighten-30">{{ user.name }}</span>
+            <span class="mx-3 colors lighten-30">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -142,5 +143,11 @@ a:hover {
   border-bottom: 2px solid var(--bs-success);
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.color {
+  background-color: rgb(195, 255, 213);
+}
+.colors {
+  color: rgb(195, 255, 213);
 }
 </style>

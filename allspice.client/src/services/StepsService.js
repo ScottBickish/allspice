@@ -8,13 +8,19 @@ class StepsService{
     AppState.activeSteps = res.data
   }
   async createStep(step){
+    
     const res = await api.post('api/Steps', step)
     // debugger
-    AppState.activeSteps = AppState.activeSteps.push(res.data)
+    AppState.activeSteps = [...AppState.activeSteps, res.data]
+    logger.log(res.data)
   }
   async removeStep(id){
     await api.delete(`api/Steps/${id}`)
-    AppState.activeSteps = AppState.activeSteps.filter(s => s.id !== AppState.activeSteps.id)
+    AppState.activeSteps = AppState.activeSteps.filter(s => s.id !== id)
+  }
+  async editSteps(stepId, step){
+    const res = await api.put(`api/Steps/${stepId}`, step)
+    logger.log(res.data)
   }
 
 }

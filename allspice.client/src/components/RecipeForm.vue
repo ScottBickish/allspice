@@ -60,6 +60,7 @@ export default {
         try {
           await recipesService.createRecipe(recipe.value)
           Modal.getOrCreateInstance(document.getElementById("RecipeForm")).hide();
+          // ref = {}
         } catch (error) {
           logger.error(error)
           Pop.toast(error)

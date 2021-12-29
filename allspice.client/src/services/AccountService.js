@@ -11,6 +11,10 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+  async favorite(id){
+    const res = await api.post('/account/favorites', id)
+    logger.log(res.data)
+  }
 }
 
 export const accountService = new AccountService()

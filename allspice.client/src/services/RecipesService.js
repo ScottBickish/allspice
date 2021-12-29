@@ -21,7 +21,7 @@ class RecipesService{
   
   async removeRecipe(id){
     await api.delete(`api/Recipes/${id}`)
-    this.getAllRecipes()
+    AppState.recipes = AppState.recipes.filter(r => r.id !== id)
   }
 
 }
