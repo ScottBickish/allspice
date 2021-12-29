@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS steps(
 
 CREATE TABLE IF NOT EXISTS favorites(
   accountId VARCHAR(255) NOT NULL,
-  recipeId int NOT NULL,
+  recipeId INT NOT NULL,
   id INT NOT NULL primary key AUTO_INCREMENT COMMENT 'primary key',
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE,
   FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE

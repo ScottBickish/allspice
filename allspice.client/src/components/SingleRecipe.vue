@@ -1,8 +1,19 @@
 <template>
+  <!-- "'#addRules-' + game.id" -->
+  <Modal :id="'editRecipeForm' + recipe.id">
+    <template #modal-title> Edit Your Delecious Recipe! </template>
+
+    <template #modal-body> <EditRecipeForm :recipe="recipe" /> </template>
+  </Modal>
   <div class="d-flex justify-content-between bg-secondary">
     <div
       class="mdi mdi-heart bg-secondary text-danger ms-2 selectable"
       @click="favorite(recipe.id)"
+    ></div>
+    <div
+      class="mdi mdi-pencil selectable"
+      data-bs-toggle="modal"
+      :data-bs-target="'#editRecipeForm' + recipe.id"
     ></div>
     <div
       class="bg-secondary rounded-top mdi mdi-close selectable me-2"
