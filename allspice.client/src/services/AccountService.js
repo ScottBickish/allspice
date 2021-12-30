@@ -11,9 +11,18 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
-  async favorite(recipeId){
-    const res = await api.post('/Account/favorites', recipeId)
-    logger.log(res.data)
+  async favorite(favorite){
+    const res = await api.post('/Account/favorites', favorite)
+    AppState.favorites = [...AppState.favorites, res.data]
+  }
+  async unfavorite(id){
+    await api.delete(`/Account/favorites/${id}`)
+    AppState.favorites = AppState.favorites.filter(f => f.id !== id)
+    this.getFavorites()
+  }
+  async getFavorites(){
+    const res = await api.get('/Account/favorites')
+    AppState.favorites = res.data
   }
 }
 

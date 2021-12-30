@@ -21,11 +21,11 @@ namespace allspice.Services
     {
       return _repo.Create(newfavorite);
     }
-    internal Favorite GetById(int id)
+    internal Favorite GetById(int recipeId)
     {
-      Favorite found = _repo.GetById(id);
+      Favorite found = _repo.GetById(recipeId);
       if(found == null){
-        throw new Exception("Invalid Id");
+        throw new Exception("Invalid recipeId");
       }
       return found; 
     }

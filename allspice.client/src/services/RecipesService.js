@@ -8,7 +8,6 @@ class RecipesService{
     const res = await api.get('api/Recipes')
     AppState.recipes = res.data
   }
-  // NOTE set active
   async getRecipeById(id){
     const res = await api.get(`api/Recipes/${id}`)
     AppState.activeRecipe = res.data
@@ -23,6 +22,18 @@ class RecipesService{
     await api.delete(`api/Recipes/${id}`)
     AppState.recipes = AppState.recipes.filter(r => r.id !== id)
   }
+  async editRecipe(recipe){
+    const res = await api.put(`api/Recipes/${recipe.id}`, recipe)
+    const newRecipe = res.data
+    
+    const index = AppState.recipes.findIndex(r => r.id === newRecipe.id)
+    if(index === -1){
+      AppState.recipes.push(newEvent)
+      return
+    }
+    AppState.recipes.splice(index, 1, newRecipe)
+  }
+  
 
 }
 export const recipesService = new RecipesService()

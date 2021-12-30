@@ -1,5 +1,5 @@
 <template>
-  <div class="ActiveSteps" contenteditable @blur="editSteps">
+  <div class="ActiveSteps" content editable @blur="editSteps">
     <div>
       <p>{{ a.recipeStepOrder }}.) {{ a.body }}</p>
     </div>

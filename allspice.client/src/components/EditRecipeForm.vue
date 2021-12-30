@@ -69,7 +69,7 @@ export default {
       async handleSubmit() {
         try {
           await recipesService.editRecipe(editable.value)
-          Modal.getOrCreateInstance(document.getElementById('EditRecipeForm')).hide()
+          Modal.getOrCreateInstance(document.getElementById(`editRecipeForm${props.recipe.id}`)).hide()
         } catch (error) {
           logger.error(error)
           Pop.toast(error)

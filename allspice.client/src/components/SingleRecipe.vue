@@ -1,14 +1,20 @@
 <template>
-  <!-- "'#addRules-' + game.id" -->
   <Modal :id="'editRecipeForm' + recipe.id">
-    <template #modal-title> Edit Your Delecious Recipe! </template>
+    <template #modal-title> Edit Your Delicious Recipe! </template>
 
     <template #modal-body> <EditRecipeForm :recipe="recipe" /> </template>
   </Modal>
   <div class="d-flex justify-content-between bg-secondary">
     <div
-      class="mdi mdi-heart bg-secondary text-danger ms-2 selectable"
-      @click="favorite(recipe.id)"
+      v-if="!recipe.favorited"
+      class="mdi mdi-heart-broken bg-secondary ms-2 selectable"
+      @click="favorite(recipe)"
+    ></div>
+
+    <div
+      v-if="recipe.favorited"
+      class="mdi mdi-heart ms-2 text-danger selectable"
+      @click="unfavorite(recipe)"
     ></div>
     <div
       class="mdi mdi-pencil selectable"
@@ -65,8 +71,10 @@ export default {
     recipe: Object
   },
   setup(props) {
+    // let favorited = false
     return {
       props,
+      // favorited,
 
       async setActiveStuff(recipeId) {
         try {
@@ -90,16 +98,39 @@ export default {
           Pop.toast(error)
         }
       },
-      async favorite(id) {
+      async favorite(recipe) {
         try {
-          await accountService.favorite(id)
+          let favorite = {}
+          favorite.recipeId = recipe.id
+          recipe.favorited = !recipe.favorited
+          await recipesService.editRecipe(recipe)
+          await accountService.favorite(favorite)
         } catch (error) {
           logger.error(error)
           Pop.toast(error)
         }
       },
+      async unfavorite(recipe) {
+        try {
+          recipe.favorited = !recipe.favorited
+          await recipesService.editRecipe(recipe)
+          await accountService.unfavorite(recipe.id)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error)
+        }
+      },
+      favorited: computed(() => AppState.favorited),
+      account: computed(() => AppState.account),
+      favorites: computed(() => AppState.favorites),
+      // favorited: computed(() => {
+      //   if (AppState.account.id) {
+      //     let found = AppState.favorites.find(f => f.recipeId === props.recipe.id)
+      //     return found ? true : false
+      //   }
+      //   return false
+      // })
 
-      account: computed(() => AppState.account)
     }
   }
 }

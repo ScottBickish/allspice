@@ -4,6 +4,7 @@ namespace allspice.Models
   {
     public int Id {get; set;}
     public string ImgUrl {get; set;}
+    public bool Favorited {get; set;}
     public string Title {get; set;}
     public string SubTitle {get; set;}
     public string Category {get; set;}

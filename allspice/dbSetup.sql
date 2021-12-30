@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS recipes(
   updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
    id INT NOT NULL primary key AUTO_INCREMENT COMMENT 'primary key',
    imgUrl TEXT NOT NULL COMMENT 'recipe photo',
+   favorited boolean DEFAULT false,
    title TEXT NOT NULL COMMENT 'recipe title',
    subtitle TEXT NOT NULL COMMENT 'recipe subtitle',
    category TEXT NOT NULL COMMENT 'recipe category',

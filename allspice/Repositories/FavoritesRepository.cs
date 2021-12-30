@@ -32,25 +32,25 @@ namespace allspice.Repositories
       return newfavorite;
     }
 
-    internal void Remove(int id)
+    internal void Remove(int recipeId)
     {
       string sql = @"
       DELETE FROM favorites
-      WHERE id = @Id
+      WHERE recipeId = @recipeId
       ;";
-      int rows = _db.Execute(sql, new { id });
+      int rows = _db.Execute(sql, new { recipeId });
       if (rows <= 0)
       {
         throw new Exception("invalid Id");
       }
     }
 
-    internal Favorite GetById(int id)
+    internal Favorite GetById(int recipeId)
     {
       string sql = @"SELECT * FROM favorites
-      WHERE id = @id
+      WHERE recipeId = @recipeId
       ;";
-      return _db.QueryFirstOrDefault<Favorite>(sql, new{id});
+      return _db.QueryFirstOrDefault<Favorite>(sql, new{recipeId});
     }
     
   }
