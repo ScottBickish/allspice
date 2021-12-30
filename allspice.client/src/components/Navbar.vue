@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-secondary px-3">
+  <nav class="navbar navbar-expand-lg navbar-dark back px-3">
     <button
       class="btn btn-rounded color"
       data-bs-toggle="modal"
@@ -40,7 +40,7 @@
         </li>
       </ul>
       <em>
-        <h2 class="me-5">AllSpice</h2>
+        <h1 class="me-5">AllSpice</h1>
       </em>
 
       <span class="navbar-text ms-5">
@@ -149,5 +149,8 @@ a:hover {
 }
 .colors {
   color: rgb(195, 255, 213);
+}
+.back {
+  background-color: rgba(255, 162, 40, 0.712);
 }
 </style>

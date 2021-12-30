@@ -1,6 +1,6 @@
 <template>
   <div class="row container fluid">
-    <div class="col-md-4 p-2" v-for="recipe in recipes" :key="recipe.id">
+    <div class="col-md-4 p-5" v-for="recipe in recipes" :key="recipe.id">
       <SingleRecipe :recipe="recipe" />
     </div>
   </div>

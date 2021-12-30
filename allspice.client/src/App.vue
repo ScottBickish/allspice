@@ -6,9 +6,7 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-secondary text-light text-center p-4">
-      Made By Scott Bickish
-    </div>
+    <div class="back colors text-center p-4">Made By Scott Bickish</div>
   </footer>
 </template>
 
@@ -26,4 +24,10 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
+.back {
+  background-color: rgba(255, 162, 40, 0.712);
+}
+.colors {
+  color: rgb(195, 255, 213);
+}
 </style>

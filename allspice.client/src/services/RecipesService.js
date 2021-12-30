@@ -28,7 +28,7 @@ class RecipesService{
     
     const index = AppState.recipes.findIndex(r => r.id === newRecipe.id)
     if(index === -1){
-      AppState.recipes.push(newEvent)
+      AppState.recipes.push(newRecipe)
       return
     }
     AppState.recipes.splice(index, 1, newRecipe)

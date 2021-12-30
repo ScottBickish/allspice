@@ -6,7 +6,7 @@
         :src="activeRecipe.imgUrl"
         alt="yummy photo"
       />
-      <div class="bg-secondary rounded">
+      <div class="back rounded">
         <em>
           <h5 class="p-2">{{ activeRecipe.title }}</h5>
           <h5 class="p-2">{{ activeRecipe.subTitle }}</h5>
@@ -14,14 +14,14 @@
       </div>
     </div>
     <div class="col-md-4 color rounded">
-      <div class="bg-secondary text-center rounded"><p>Recipe Steps</p></div>
+      <div class="back text-center rounded"><p>Recipe Steps</p></div>
       <div
         v-for="a in activeSteps"
         :key="a.id"
         class="d-flex justify-content-between"
       >
         <div>
-          <ActiveSteps :a="a" />
+          <ActiveSteps :a="a" :activeRecipe="activeRecipe" />
         </div>
         <!-- <div
           contenteditable
@@ -54,11 +54,11 @@
           required
           v-model="step.body"
         />
-        <button class="btn btn-rounded bg-secondary" type="submit">Post</button>
+        <button class="btn btn-rounded back" type="submit">Post</button>
       </form>
     </div>
     <div class="col-md-4 color rounded">
-      <div class="bg-secondary text-center rounded">Ingredients</div>
+      <div class="back text-center rounded">Ingredients</div>
       <div
         v-for="i in activeIngredients"
         :key="i.id"
@@ -91,7 +91,7 @@
           required
           v-model="ingredient.ingredientName"
         />
-        <button class="btn btn-rounded bg-secondary" type="submit">Post</button>
+        <button class="btn btn-rounded back" type="submit">Post</button>
       </form>
     </div>
   </div>
@@ -185,5 +185,8 @@ export default {
 }
 .color {
   background-color: rgb(195, 255, 213);
+}
+.back {
+  background-color: rgba(255, 162, 40, 0.712);
 }
 </style>

@@ -13,7 +13,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body color">
           <slot name="modal-body" />
         </div>
       </div>
@@ -35,5 +35,8 @@ export default {
 .modal {
   height: 750px;
   width: 900px;
+}
+.color {
+  background-color: rgb(195, 255, 213);
 }
 </style>

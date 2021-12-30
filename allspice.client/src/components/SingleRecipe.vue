@@ -4,30 +4,30 @@
 
     <template #modal-body> <EditRecipeForm :recipe="recipe" /> </template>
   </Modal>
-  <div class="d-flex justify-content-between bg-secondary">
-    <div
+  <div class="d-flex justify-content-between back">
+    <h4
       v-if="!recipe.favorited"
-      class="mdi mdi-heart-broken bg-secondary ms-2 selectable"
+      class="mdi mdi-heart-broken ms-2 selectable"
       @click="favorite(recipe)"
-    ></div>
+    ></h4>
 
-    <div
+    <h4
       v-if="recipe.favorited"
       class="mdi mdi-heart ms-2 text-danger selectable"
       @click="unfavorite(recipe)"
-    ></div>
-    <div
+    ></h4>
+    <h4
       class="mdi mdi-pencil selectable"
       data-bs-toggle="modal"
       :data-bs-target="'#editRecipeForm' + recipe.id"
-    ></div>
-    <div
-      class="bg-secondary rounded-top mdi mdi-close selectable me-2"
+    ></h4>
+    <h4
+      class="rounded-top mdi mdi-close selectable me-2"
       @click="removeRecipe(recipe.id)"
-    ></div>
+    ></h4>
   </div>
   <div
-    class="bg-secondary rounded-bottom"
+    class="back rounded-bottom"
     data-bs-toggle="modal"
     data-bs-target="#recipe-modal"
   >
@@ -123,13 +123,7 @@ export default {
       favorited: computed(() => AppState.favorited),
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
-      // favorited: computed(() => {
-      //   if (AppState.account.id) {
-      //     let found = AppState.favorites.find(f => f.recipeId === props.recipe.id)
-      //     return found ? true : false
-      //   }
-      //   return false
-      // })
+
 
     }
   }
@@ -142,5 +136,8 @@ export default {
   height: 250px;
   width: 320px;
   object-fit: cover;
+}
+.back {
+  background-color: rgba(5, 209, 56, 0.712);
 }
 </style>
