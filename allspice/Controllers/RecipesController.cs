@@ -50,6 +50,20 @@ namespace allspice.Controllers
           return BadRequest(e.Message);
       }
     }
+    [HttpGet("{recipecategories}/{category}")]
+    public ActionResult<Recipe> GetCategory(string category)
+    {
+      try
+      {
+           var Recipe = _rs.GetCategory(category);
+           return Ok(Recipe);
+      }
+      catch (Exception e)
+      {
+          
+          return BadRequest(e.Message);
+      }
+    }
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<Recipe>> Create([FromBody] Recipe newrecipe)

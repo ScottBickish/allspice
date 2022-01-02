@@ -27,6 +27,13 @@ namespace allspice.Repositories
       return _db.QueryFirstOrDefault<Recipe>(sql, new{id});
     }
 
+    internal Recipe GetCategory(string category)
+    {
+      string sql = @"SELECT * FROM recipes
+      WHERE category = @category;";
+      return _db.QueryFirstOrDefault<Recipe>(sql, new{category});
+    }
+
     internal Recipe Create(Recipe newrecipe)
     {
        string sql = @"INSERT INTO recipes 

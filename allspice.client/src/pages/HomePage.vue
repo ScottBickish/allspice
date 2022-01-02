@@ -1,11 +1,27 @@
 <template>
-  <span class="ms-4">Sort By Favorites!</span>
-  <input
-    type="checkbox"
-    class="ms-2"
-    v-model="sortfavs"
-    @click="sortFavorites"
-  />
+  <form @submit.prevent="search" class="bg-white rounded elevation-1">
+    <div class="form-group d-flex align-items-center">
+      <input
+        v-model="query"
+        type="text"
+        name="search"
+        class="form-control bg-white border-0"
+        placeholder="Search Recipes By Category..."
+      />
+      <button class="btn px-2 py-0" type="submit">
+        <i class="mdi mdi-magnify f-18"></i>
+      </button>
+    </div>
+  </form>
+  <div class="ms-4 mt-4">
+    <span>Sort By Favorites!</span>
+    <input
+      type="checkbox"
+      class="ms-3"
+      v-model="sortfavs"
+      @click="sortFavorites"
+    />
+  </div>
 
   <div class="row container fluid" v-if="sortfavs">
     <div
@@ -22,6 +38,12 @@
       <SingleRecipe :recipe="recipe" />
     </div>
   </div>
+
+  <div class="row container fluid" v-if="queryRecipes">
+    <div class="col-md-4 p-5" v-for="recipe in queryRecipes" :key="recipe.id">
+      <SingleRecipe :recipe="recipe" />
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,6 +56,7 @@ import { accountService } from "../services/AccountService"
 export default {
 
   setup() {
+    const query = ref("")
     let sortfavs = ref(false)
     onMounted(async () => {
       try {
@@ -45,8 +68,10 @@ export default {
       }
     })
     return {
+      query,
       sortfavs,
       name: 'Home',
+      queryRecipes: computed(() => AppState.queryRecipes),
       recipes: computed(() => AppState.recipes),
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
@@ -54,6 +79,14 @@ export default {
       async sortFavorites() {
         try {
           await accountService.sortFavorites()
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error)
+        }
+      },
+      async search() {
+        try {
+          await recipesService.search(query.value)
         } catch (error) {
           logger.error(error)
           Pop.toast(error)

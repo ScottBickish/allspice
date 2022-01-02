@@ -33,6 +33,14 @@ class RecipesService{
     }
     AppState.recipes.splice(index, 1, newRecipe)
   }
+  async search(query){
+    const res = await api.get(`api/Recipes/recipecategories/${query}`)
+    logger.log(res.data)
+    // AppState.queryRecipes = res.data
+    
+
+    
+  }
   
 
 }

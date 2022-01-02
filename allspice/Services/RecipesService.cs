@@ -25,6 +25,14 @@ namespace allspice.Services
       }
       return found;
     }
+    internal object GetCategory(string category)
+    {
+      Recipe found =_repo.GetCategory(category);
+      if(found == null){
+        throw new Exception("Invalid Category Service");
+      }
+      return found;
+    }
 
     internal Recipe Create(Recipe newrecipe)
     {
@@ -42,6 +50,7 @@ namespace allspice.Services
       updatedRecipe.CreatorId = updatedRecipe.CreatorId != null ? updatedRecipe.CreatorId : oldRecipe.CreatorId;
       return _repo.Edit(updatedRecipe);
     }
+
 
     internal void Remove(int id)
     {
