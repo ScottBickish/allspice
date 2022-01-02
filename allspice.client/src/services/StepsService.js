@@ -21,7 +21,6 @@ class StepsService{
     const res = await api.put(`api/Steps/${stepId}`, step)
     logger.log(res.data)
     const newStep = res.data
-    // delete res.data.recipeStepOrder
     
     const index = AppState.activeSteps.findIndex(r => r.id === newStep.id)
    
@@ -31,7 +30,6 @@ class StepsService{
     const res = await api.put(`api/Steps/${stepId}`, step)
     logger.log(res.data)
     const newStepOrder = res.data
-    // delete res.data.recipeStepOrder
     
     const index = AppState.activeSteps.findIndex(r => r.id === newStepOrder.id)
    

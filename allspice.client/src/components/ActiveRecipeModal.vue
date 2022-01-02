@@ -23,13 +23,7 @@
         <div>
           <ActiveSteps :a="a" :activeRecipe="activeRecipe" />
         </div>
-        <!-- <div
-          contenteditable
-          @blur="editSteps"
-          class="d-flex justify-content-between"
-        >
-          <p>{{ a.recipeStepOrder }}.) {{ a.body }}</p>
-        </div> -->
+
         <div
           class="mdi mdi-trash-can selectable text-danger"
           @click="removeStep(a.id)"
@@ -64,9 +58,10 @@
         :key="i.id"
         class="d-flex justify-content-between"
       >
-        <div>
+        <ActiveIngredients :i="i" :activeRecipe="activeRecipe" />
+        <!-- <div>
           <p>{{ i.quantity }} of {{ i.ingredientName }}</p>
-        </div>
+        </div> -->
         <div
           class="mdi mdi-trash-can selectable text-danger"
           @click="removeIngredient(i.id)"
@@ -159,18 +154,7 @@ export default {
           Pop.toast(error)
         }
       },
-      // async editSteps(event) {
-      //   try {
-      //     // logger.log(event)
-      //     let stepId = event.id
-      //     let data = event.target.innerText
-      //     let rule = { recipeStepOrder: data, body: data }
-      //     await stepsService.editSteps(stepId, rule)
-      //   } catch (error) {
-      //     logger.error(error)
-      //     Pop.toast(error)
-      //   }
-      // }
+
     }
   }
 }

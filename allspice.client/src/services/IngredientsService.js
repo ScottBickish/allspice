@@ -16,7 +16,23 @@ class IngredientsService{
     await api.delete(`api/Ingredients/${id}`)
     AppState.activeIngredients = AppState.activeIngredients.filter(i => i.id !== id)
   }
+  async editquantity(ingredientId, ingredient){
+    const res = await api.put(`api/Ingredients/${ingredientId}`, ingredient)
+    const newIngredient = res.data
+    
+    const index = AppState.activeIngredients.findIndex(i => i.id === newIngredient.id)
+   
+    AppState.activeIngredients.splice(index, 1, newIngredient)
+  }
 
+  async editingredientName(ingredientId, ingredient){
+    const res = await api.put(`api/Ingredients/${ingredientId}`, ingredient)
+    const newIngredient = res.data
+    
+    const index = AppState.activeIngredients.findIndex(i => i.id === newIngredient.id)
+   
+    AppState.activeIngredients.splice(index, 1, newIngredient)
+  }
 }
 
 export const ingredientsService = new IngredientsService()

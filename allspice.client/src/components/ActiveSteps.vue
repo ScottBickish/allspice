@@ -23,10 +23,8 @@ export default {
     activeRecipe: Object
   },
   setup(props) {
-    // let activeRecipeId = computed(() => AppState.activeRecipe.id)
-    // const editable = ref({ recipeId: activeRecipeId })
+
     return {
-      // editable,
       props,
       async editSteps(event) {
         try {
