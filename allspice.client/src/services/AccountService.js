@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { recipesService } from "./RecipesService"
 
 class AccountService {
   async getAccount() {
@@ -18,9 +19,10 @@ class AccountService {
   async unfavorite(id){
     await api.delete(`/Account/favorites/${id}`)
     AppState.favorites = AppState.favorites.filter(f => f.id !== id)
-    this.getFavorites()
+    // this.getFavorites()
+    await recipesService.getAllRecipes()
   }
-  async getFavorites(){
+  async sortFavorites(){
     const res = await api.get('/Account/favorites')
     AppState.favorites = res.data
   }
