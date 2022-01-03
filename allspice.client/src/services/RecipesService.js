@@ -14,8 +14,7 @@ class RecipesService{
   }
   async createRecipe(recipe){
     const res = await api.post('api/Recipes', recipe)
-    logger.log(res.data, 'Posted recipe from modal')
-    AppState.recipes = AppState.recipes.push(res.data)
+    AppState.recipes = [...AppState.recipes, res.data]
   }
   
   async removeRecipe(id){
