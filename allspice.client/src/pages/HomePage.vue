@@ -39,8 +39,8 @@
     </div>
   </div>
 
-  <div class="row container fluid" v-if="queryRecipes">
-    <div class="col-md-4 p-5" v-for="recipe in queryRecipes" :key="recipe.id">
+  <div class="row container fluid" v-if="recipes.category === query">
+    <div class="col-md-4 p-5" v-for="recipe in recipes" :key="recipe.id">
       <SingleRecipe :recipe="recipe" />
     </div>
   </div>
@@ -71,7 +71,6 @@ export default {
       query,
       sortfavs,
       name: 'Home',
-      queryRecipes: computed(() => AppState.queryRecipes),
       recipes: computed(() => AppState.recipes),
       account: computed(() => AppState.account),
       favorites: computed(() => AppState.favorites),
