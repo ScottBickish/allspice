@@ -2,7 +2,7 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="yes">
     <router-view />
   </main>
   <footer>
@@ -29,5 +29,8 @@ export default {
 }
 .colors {
   color: rgb(195, 255, 213);
+}
+.yes {
+  background-color: rgb(184, 184, 184);
 }
 </style>

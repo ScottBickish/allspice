@@ -36,7 +36,6 @@ class RecipesService{
     const res = await api.get(`api/Recipes/recipecategories/${query}`)
     logger.log(res.data)
     AppState.recipes = AppState.recipes.filter(r => r.category === res.data.category)
-    // AppState.queryRecipes = res.data
     
 
     

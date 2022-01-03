@@ -4,50 +4,52 @@
 
     <template #modal-body> <EditRecipeForm :recipe="recipe" /> </template>
   </Modal>
-  <div class="d-flex justify-content-between back">
-    <h4
-      v-if="!recipe.favorited"
-      class="mdi mdi-heart-broken ms-2 selectable"
-      @click="favorite(recipe)"
-    ></h4>
+  <div class="bd mb-0">
+    <div class="d-flex justify-content-between back rounded-top">
+      <h4
+        v-if="!recipe.favorited"
+        class="mdi mdi-heart-broken ms-2 selectable"
+        @click="favorite(recipe)"
+      ></h4>
 
-    <h4
-      v-if="recipe.favorited"
-      class="mdi mdi-heart ms-2 text-danger selectable"
-      @click="unfavorite(recipe)"
-    ></h4>
-    <h4
-      class="mdi mdi-pencil selectable"
-      data-bs-toggle="modal"
-      :data-bs-target="'#editRecipeForm' + recipe.id"
-    ></h4>
-    <h4
-      class="rounded-top mdi mdi-close selectable me-2"
-      @click="removeRecipe(recipe.id)"
-    ></h4>
-  </div>
-  <div
-    class="back rounded-bottom"
-    data-bs-toggle="modal"
-    data-bs-target="#recipe-modal"
-  >
-    <div
-      class="justify-content-center d-flex selectable"
-      @click="setActiveStuff(recipe.id)"
-    >
-      <img
-        :src="recipe.imgUrl"
-        class="card-img-top pic mt-2 img-fluid"
-        alt="recipe picture didnt load sorry"
-      />
+      <h4
+        v-if="recipe.favorited"
+        class="mdi mdi-heart ms-2 text-danger selectable"
+        @click="unfavorite(recipe)"
+      ></h4>
+      <h4
+        class="mdi mdi-pencil selectable"
+        data-bs-toggle="modal"
+        :data-bs-target="'#editRecipeForm' + recipe.id"
+      ></h4>
+      <h4
+        class="rounded-top mdi mdi-close selectable me-2"
+        @click="removeRecipe(recipe.id)"
+      ></h4>
     </div>
-    <div class="card-body m-3">
-      <em>
-        <h5 class="card-title">{{ recipe.title }}</h5>
-        <h6 class="card-text">{{ recipe.subTitle }}</h6>
+    <div
+      class="back rounded-bottom"
+      data-bs-toggle="modal"
+      data-bs-target="#recipe-modal"
+    >
+      <div
+        class="justify-content-center d-flex selectable"
+        @click="setActiveStuff(recipe.id)"
+      >
+        <img
+          :src="recipe.imgUrl"
+          class="card-img-top pic mt-2 img-fluid"
+          alt="recipe picture didnt load sorry"
+        />
+      </div>
+      <div class="card-body m-3 mb-0">
+        <em>
+          <h5 class="card-title">{{ recipe.title }}</h5>
+          <h6 class="card-text">{{ recipe.subTitle }}</h6>
 
-        {{ recipe.category }}
-      </em>
+          {{ recipe.category }}
+        </em>
+      </div>
     </div>
   </div>
   <Modal id="recipe-modal">
@@ -138,6 +140,10 @@ export default {
   object-fit: cover;
 }
 .back {
-  background-color: rgba(5, 209, 56, 0.712);
+  background-color: rgba(81, 255, 125, 0.712);
+}
+.bd {
+  border: 3px solid rgba(255, 162, 40, 0.712);
+  border-radius: 5px;
 }
 </style>
