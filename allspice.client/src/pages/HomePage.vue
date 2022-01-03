@@ -85,7 +85,7 @@ export default {
       },
       async search() {
         try {
-          await recipesService.search(query.value)
+          await recipesService.search(query.value.toLowerCase())
         } catch (error) {
           logger.error(error)
           Pop.toast(error)
