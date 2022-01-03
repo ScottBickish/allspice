@@ -73,11 +73,8 @@ export default {
     recipe: Object
   },
   setup(props) {
-    // let favorited = false
     return {
       props,
-      // favorited,
-
       async setActiveStuff(recipeId) {
         try {
           await recipesService.getRecipeById(recipeId)
@@ -105,6 +102,7 @@ export default {
           let favorite = {}
           favorite.recipeId = recipe.id
           recipe.favorited = !recipe.favorited
+          Pop.toast("You have favorited this recipe!", "success")
           await recipesService.editRecipe(recipe)
           await accountService.favorite(favorite)
         } catch (error) {
@@ -115,6 +113,7 @@ export default {
       async unfavorite(recipe) {
         try {
           recipe.favorited = !recipe.favorited
+          Pop.toast('You have removed this recipe from your favorites')
           await recipesService.editRecipe(recipe)
           await accountService.unfavorite(recipe.id)
         } catch (error) {

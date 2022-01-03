@@ -69,6 +69,7 @@ export default {
       async handleSubmit() {
         try {
           await recipesService.editRecipe(editable.value)
+          Pop.toast("You have updated your recipe!", 'success')
           Modal.getOrCreateInstance(document.getElementById(`editRecipeForm${props.recipe.id}`)).hide()
         } catch (error) {
           logger.error(error)

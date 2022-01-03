@@ -59,6 +59,7 @@ export default {
       async createRecipe() {
         try {
           await recipesService.createRecipe(recipe.value)
+          Pop.toast('You created a recipe!', 'success')
           Modal.getOrCreateInstance(document.getElementById("RecipeForm")).hide();
           // ref = {}
         } catch (error) {
