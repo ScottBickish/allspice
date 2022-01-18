@@ -1,6 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark back px-3">
     <button
+      v-if="account.id"
       class="btn btn-rounded color"
       data-bs-toggle="modal"
       data-bs-target="#RecipeForm"
@@ -66,12 +67,7 @@
             aria-expanded="false"
             id="authDropdown"
           >
-            <img
-              :src="user.picture"
-              alt="user photo"
-              height="40"
-              class="rounded"
-            />
+            <img :src="user.picture" alt="user photo" class="pic" />
             <span class="mx-3 colors lighten-30">{{ user.name }}</span>
           </div>
           <div
@@ -108,6 +104,7 @@ import { computed } from 'vue'
 export default {
   setup() {
     return {
+      account: computed(() => AppState.account),
       user: computed(() => AppState.user),
       async login() {
         AuthService.loginWithPopup()
@@ -152,5 +149,11 @@ a:hover {
 }
 .back {
   background-color: rgba(255, 162, 40, 0.712);
+}
+.pic {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 </style>

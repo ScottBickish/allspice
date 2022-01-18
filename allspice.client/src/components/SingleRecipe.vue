@@ -99,6 +99,9 @@ export default {
       },
       async favorite(recipe) {
         try {
+          // if (!AppState.account.id) {
+          //   Pop.toast("Please Login")
+          // }
           let favorite = {}
           favorite.recipeId = recipe.id
           recipe.favorited = !recipe.favorited

@@ -31,7 +31,7 @@ export default {
           logger.log(event)
           let stepId = props.a.id
           let data = event.target.innerText
-          let rule = { body: data, recipeId: props.activeRecipe.id, recipeStepOrder: props.a.recipeStepOrder }
+          let rule = { body: data, recipeId: props.activeRecipe.id }
           await stepsService.editSteps(stepId, rule)
         } catch (error) {
           logger.error(error)

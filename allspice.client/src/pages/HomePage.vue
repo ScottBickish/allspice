@@ -14,7 +14,9 @@
     </div>
   </form>
   <div class="ms-4 mt-4">
-    <span>Sort By Favorites!</span>
+    <em>
+      <span>Sort By Favorites!</span>
+    </em>
     <input
       type="checkbox"
       class="ms-3"
